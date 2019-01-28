@@ -121,6 +121,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="TSG.csproj">
+      <Project>{AF656852-51AD-42F9-89F5-1A4D0EED8F62}</Project>
+      <Name>TSG</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Editor\OperationTransform.cs" />
     <Compile Include="Assets\Editor\UnilityEditor.cs" />
   </ItemGroup>
