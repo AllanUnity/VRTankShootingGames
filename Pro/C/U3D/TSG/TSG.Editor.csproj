@@ -127,7 +127,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleBrowserMain.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleBuildTab.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleDataSource\ABDataSource.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleDataSource\ABDataSourceProvider.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleDataSource\AssetDatabaseABDataSource.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleManageTab.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleModel\ABModel.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleModel\ABModelAssetInfo.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleModel\ABModelBundleInfo.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleTree.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\AssetListTree.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\BundleDetailList.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\InspectTab\AssetBundleInspectTab.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\InspectTab\AssetBundleRecord.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\InspectTab\InspectSingleBundle.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\InspectTab\InspectTreeView.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\MessageList.cs" />
+    <Compile Include="Assets\Editor\AssetBundles-Browser\MessageSystem.cs" />
     <Compile Include="Assets\Editor\OperationTransform.cs" />
+    <Compile Include="Assets\Editor\Tools\FileUnility.cs" />
+    <Compile Include="Assets\Editor\Tools\RightMouseTouch.cs" />
     <Compile Include="Assets\Editor\UnilityEditor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
