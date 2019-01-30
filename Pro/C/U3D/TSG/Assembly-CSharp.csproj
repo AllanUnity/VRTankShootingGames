@@ -67,11 +67,13 @@
     <Compile Include="Assets\AssetBundleManager\AssetBundleSample\Scripts\LoadScenes.cs" />
     <Compile Include="Assets\AssetBundleManager\AssetBundleSample\Scripts\LoadTanks.cs" />
     <Compile Include="Assets\AssetBundleManager\AssetBundleSample\Scripts\LoadVariants.cs" />
+    <Compile Include="Assets\Scripts\Controller\TankController\TKTowerBase.cs" />
     <Compile Include="Assets\Scripts\ENUM\CEvent.cs" />
     <Compile Include="Assets\Scripts\ENUM\CGameState.cs" />
     <Compile Include="Assets\Scripts\ENUM\UILayerType.cs" />
     <Compile Include="Assets\Scripts\Manager\CSGame.cs" />
     <Compile Include="Assets\Scripts\Manager\Event\EventSystemManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\Exception\CSExceptionManager.cs" />
     <Compile Include="Assets\Scripts\Manager\Singleton\CSMonoSingleton.cs" />
     <Compile Include="Assets\Scripts\Manager\Singleton\CSSingleton.cs" />
     <Compile Include="Assets\Scripts\Manager\Singleton\CSSingletonDemo.cs" />
