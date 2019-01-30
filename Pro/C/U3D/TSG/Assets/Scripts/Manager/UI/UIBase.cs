@@ -55,6 +55,7 @@ public class UIBase : MonoBehaviour
         return gameObject && gameObject.activeInHierarchy;
     }
 
+    #region OnClick
     /// <summary>按钮添加点击事件</summary>
     /// <param name="_btn"></param>
     /// <param name="callback"></param>
@@ -94,4 +95,5 @@ public class UIBase : MonoBehaviour
             Debug.Log("Add's Toggle is None");
         }
     }
+    #endregion
 }

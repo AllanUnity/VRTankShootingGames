@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>UI管理类</summary>
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
     private static UIManager instance;
 
@@ -16,8 +17,6 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    public string CanvasName = "UI/UIMainCanvas";
-    private Transform canvas;
     /// <summary>打开展示的界面</summary>
     public List<UIBase> ShowPanels;
     /// <summary>隐藏的面板</summary>
@@ -28,21 +27,15 @@ public class UIManager : MonoBehaviour {
         ShowPanels = new List<UIBase>();
         HidePanels = new List<UIBase>();
     }
-    public Transform GetUICanvas()
-    {
-        if (canvas==null)
-        {
-            GameObject _canvas = GameObject.Find(CanvasName);
-            if (_canvas!=null)
-            {
-                canvas = _canvas.transform;
-            }
-        }
-        return canvas;
-    }
+
     public void OpenPanel()
     {
 
+    }
+    public T GetPanel<T>() where T : UIBase
+    {
+
+        return null;
     }
     public void ClosePanel()
     {
