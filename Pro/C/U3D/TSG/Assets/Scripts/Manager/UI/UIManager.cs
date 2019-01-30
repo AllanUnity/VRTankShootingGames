@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>UI管理类</summary>
 public class UIManager : MonoBehaviour {
 
     private static UIManager instance;

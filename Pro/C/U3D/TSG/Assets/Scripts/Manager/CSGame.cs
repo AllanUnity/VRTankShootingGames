@@ -68,4 +68,8 @@ public class CSGame : MonoBehaviour
         instance = this;
         Application.targetFrameRate = 45;
     }
+    private void InitMonoManager()
+    {
+        UILayerManager.Instance.Init();
+    }
 }
