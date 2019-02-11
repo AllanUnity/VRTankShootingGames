@@ -82,7 +82,10 @@
     <Compile Include="Assets\Editor\AssetBundles-Browser\InspectTab\InspectTreeView.cs" />
     <Compile Include="Assets\Editor\AssetBundles-Browser\MessageList.cs" />
     <Compile Include="Assets\Editor\AssetBundles-Browser\MessageSystem.cs" />
+    <Compile Include="Assets\Editor\DoAssetbundle.cs" />
+    <Compile Include="Assets\Editor\Motion_UI_Anchors.cs" />
     <Compile Include="Assets\Editor\OperationTransform.cs" />
+    <Compile Include="Assets\Editor\Tools\CreateUIPanelScript.cs" />
     <Compile Include="Assets\Editor\Tools\FileUnility.cs" />
     <Compile Include="Assets\Editor\Tools\RightMouseTouch.cs" />
     <Compile Include="Assets\Editor\UnilityEditor.cs" />
@@ -358,6 +361,12 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.unity">
+      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/Plugins/zxing.unity.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/Plugins/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Soft/Unity/Unity2018.3.0/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
