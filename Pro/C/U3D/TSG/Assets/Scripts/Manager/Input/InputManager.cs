@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 按键输入管理类
 /// </summary>
-public class InputManager : CSGameManagerBase<InputManager>
+public class InputManager : CSMonoSingleton<InputManager>
 {
     KeyCode[] keys;
     Dictionary<KeyCode, List<InputDelegate>> keysDelegate = new Dictionary<KeyCode, List<InputDelegate>>();
@@ -21,9 +21,9 @@ public class InputManager : CSGameManagerBase<InputManager>
     {
         Instance.RemoveCode(key, callback);
     }
-    public override void Start()
+    public override void Init()
     {
-        base.Start();
+        base.Init();
 
         string[] keyNames = Enum.GetNames(typeof(KeyCode));
         int length = keyNames.Length;
