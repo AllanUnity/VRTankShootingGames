@@ -6,7 +6,10 @@ using UnityEngine.UI;
 /// <summary>UI基础类</summary>
 public class UIBase : MonoBehaviour
 {
-
+    [SerializeField]
+    private long uiPanelID = 0;
+    /// <summary>界面唯一ID</summary>
+    public long UIId { get { return uiPanelID; } }
     protected UILayerType mPanelLayerType = UILayerType.Window;
     /// <summary>窗口层级</summary>
     public virtual UILayerType PanelLayerType { get { return mPanelLayerType; } }
