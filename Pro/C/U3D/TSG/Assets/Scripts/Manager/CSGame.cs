@@ -56,13 +56,17 @@ public class CSGame : MonoBehaviour
     public Transform MainCanvas;
     #endregion
     /// <summary>常驻资源</summary>
-    [Serializable]
-    public class ResidentAssets
+    [SerializeField]
+    private Dictionary<string,GameObject> residentAssets;
+    public GameObject GetStaticObj(string typeName)
     {
-        public string Name;
-        public GameObject games;
+        GameObject obj;
+        if (residentAssets.TryGetValue(typeName,out obj))
+        {
+            return obj;
+        }
+        return null;
     }
-    public ResidentAssets[] residentAssets;
 
     /// <summary>事件</summary>
     public EventHanlderManager EventHanlder = new EventHanlderManager();
@@ -76,13 +80,20 @@ public class CSGame : MonoBehaviour
         GameObject.DontDestroyOnLoad(this);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         instance = this;
+        Screen.SetResolution((int)SceneSize.x, (int)SceneSize.y, false);
+
         Application.targetFrameRate = 45;
 
         InitMonoManager();
     }
     private void InitMonoManager()
     {
-        UILayerManager.Instance.Init();
-        CSExceptionManager.Instance.Init();
+        UILayerManager.Initialize(transform);
+        CSExceptionManager.Initialize(transform);
+        UIManager.Initialize(transform);
+    }
+    private void Quit()
+    {
+        Application.Quit();
     }
 }
