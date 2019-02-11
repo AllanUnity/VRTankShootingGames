@@ -60,10 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetBundleManager\AssetBundleManager\Editor\AssetbundlesMenuItems.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleManager\Editor\BuildScript.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleManager\Editor\ExecuteInternalMono.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleManager\Editor\LaunchAssetBundleServer.cs" />
+    <Compile Include="Assets\AssetBundleManager\Editor\AssetbundlesMenuItems.cs" />
+    <Compile Include="Assets\AssetBundleManager\Editor\BuildScript.cs" />
+    <Compile Include="Assets\AssetBundleManager\Editor\ExecuteInternalMono.cs" />
+    <Compile Include="Assets\AssetBundleManager\Editor\LaunchAssetBundleServer.cs" />
     <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleBrowserMain.cs" />
     <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleBuildTab.cs" />
     <Compile Include="Assets\Editor\AssetBundles-Browser\AssetBundleDataSource\ABDataSource.cs" />
@@ -367,6 +367,9 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetBundleManager.API">
+      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/AssetBundleManager/Dlls/AssetBundleManager.API.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Soft/Unity/Unity2018.3.0/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

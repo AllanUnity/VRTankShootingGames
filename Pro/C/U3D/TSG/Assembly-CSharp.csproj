@@ -60,13 +60,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetBundleManager\AssetBundleManager\AssetBundleLoadOperation.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleManager\AssetBundleManager.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleManager\Utility.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleSample\Scripts\LoadAssets.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleSample\Scripts\LoadScenes.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleSample\Scripts\LoadTanks.cs" />
-    <Compile Include="Assets\AssetBundleManager\AssetBundleSample\Scripts\LoadVariants.cs" />
+    <Compile Include="Assets\AssetBundleManager\AssetBundleLoadOperation.cs" />
+    <Compile Include="Assets\AssetBundleManager\AssetBundleManager.cs" />
+    <Compile Include="Assets\AssetBundleManager\AssetBundleManagerAPI.cs" />
+    <Compile Include="Assets\AssetBundleManager\LoadedAssetBundle.cs" />
+    <Compile Include="Assets\AssetBundleManager\LogMode.cs" />
+    <Compile Include="Assets\AssetBundleManager\LogType.cs" />
+    <Compile Include="Assets\AssetBundleManager\Utility.cs" />
     <Compile Include="Assets\Car Script basic\Script\Dot_Truck_Controller.cs" />
     <Compile Include="Assets\Scripts\Controller\TankController\TKTowerBase.cs" />
     <Compile Include="Assets\Scripts\ENUM\CEvent.cs" />
@@ -325,6 +325,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetBundleManager.API">
+      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/AssetBundleManager/Dlls/AssetBundleManager.API.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Soft/Unity/Unity2018.3.0/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
