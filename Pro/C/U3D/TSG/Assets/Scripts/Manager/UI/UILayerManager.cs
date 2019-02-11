@@ -38,5 +38,16 @@ public class UILayerManager : CSMonoSingleton<UILayerManager>
         }
     }
 
+    public void SetLayer(GameObject current, UILayerType type)
+    {
+        if (LayerGameObjects != null && !LayerGameObjects.ContainsKey(type))
+        {
+            InitLayer();
+        }
+        UnityEngine.Debug.LogError("设置层级" + current.name + " => " + LayerGameObjects[type].transform.name);
+        current.transform.SetParent(LayerGameObjects[type].transform);
+        current.transform.SetAsLastSibling();
+    }
+
 
 }
