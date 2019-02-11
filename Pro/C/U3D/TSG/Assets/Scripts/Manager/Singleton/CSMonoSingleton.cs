@@ -4,26 +4,47 @@ using UnityEngine;
 
 /// <summary>继承自Mono的单例</summary>
 /// <typeparam name="T"></typeparam>
-public class CSMonoSingleton<T> : MonoBehaviour where T : UnityEngine.Component
+public class CSMonoSingleton<T> : MonoBehaviour where T : CSMonoSingleton<T>
 {
     private static T instance = default(T);
     public static T Instance
     {
         get
         {
-            if (instance == null)
-            {
-                Debug.Log("初始化" + typeof(T));
-                GameObject games = new GameObject(typeof(T).Name);
-                games.transform.SetParent(CSGame.Instance.transform);
-                DontDestroyOnLoad(games);
-                instance = games.AddComponent<T>() as T;
-            }
             return instance;
         }
     }
-    public virtual void Init()
+    /// <summary>初始化</summary>
+    /// <param name="parent"></param>
+    public static void Initialize(Transform parent)
     {
-
+        if (instance != default(T))
+        {
+            return;
+        }
+        GameObject go = new GameObject(typeof(T).Name);
+        if (parent != null)
+        {
+            go.transform.SetParent(parent);
+        }
+        instance = go.AddComponent<T>();
+        instance.Init();
     }
+
+    /// <summary>是否销毁</summary>
+    public virtual bool IsDonnotDestroy { get { return false; } }
+
+    public virtual void Init() { }
+    public virtual void Destroy()
+    {
+        if (gameObject!=null)
+        {
+            if (!IsDonnotDestroy)
+            {
+                UnityEngine.Object.Destroy(gameObject);
+                instance = null;
+            }
+        }
+    }
+
 }
