@@ -76,12 +76,15 @@
     <Compile Include="Assets\Scripts\Manager\CSGame.cs" />
     <Compile Include="Assets\Scripts\Manager\Event\EventSystemManager.cs" />
     <Compile Include="Assets\Scripts\Manager\Exception\CSExceptionManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Manager\Singleton\CSMonoSingleton.cs" />
     <Compile Include="Assets\Scripts\Manager\Singleton\CSSingleton.cs" />
     <Compile Include="Assets\Scripts\Manager\Singleton\CSSingletonDemo.cs" />
     <Compile Include="Assets\Scripts\Manager\Time\CSTimeManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\Tool\CSResourceManager.cs" />
     <Compile Include="Assets\Scripts\Manager\Tool\ToolsManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIBase.cs" />
+    <Compile Include="Assets\Scripts\Manager\UI\UIEnroll.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UILayerManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Utility\ShowFPS.cs" />
@@ -302,6 +305,12 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/Soft/Unity/Unity2018.3.0/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/Plugins/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.unity">
+      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/Plugins/zxing.unity.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -316,12 +325,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="zxing.unity">
-      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/Plugins/zxing.unity.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/Plugins/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Soft/Unity/Unity2018.3.0/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
