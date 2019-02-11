@@ -4,6 +4,7 @@ using UnityEditor;
 #endif
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 /*
  	In this demo, we demonstrate:
@@ -50,7 +51,7 @@ namespace AssetBundles
 	#endif
 	
 		static Dictionary<string, LoadedAssetBundle> m_LoadedAssetBundles = new Dictionary<string, LoadedAssetBundle> ();
-		static Dictionary<string, WWW> m_DownloadingWWWs = new Dictionary<string, WWW> ();
+		static Dictionary<string, UnityWebRequest> m_DownloadingWWWs = new Dictionary<string, UnityWebRequest> ();
 		static Dictionary<string, string> m_DownloadingErrors = new Dictionary<string, string> ();
 		static List<AssetBundleLoadOperation> m_InProgressOperations = new List<AssetBundleLoadOperation> ();
 		static Dictionary<string, string[]> m_Dependencies = new Dictionary<string, string[]> ();
@@ -218,6 +219,11 @@ namespace AssetBundles
 		}
 		
 		// Load AssetBundle and its dependencies.
+        /// <summary>
+        /// 加载AssetBundle和依赖项
+        /// </summary>
+        /// <param name="assetBundleName"></param>
+        /// <param name="isLoadingAssetBundleManifest"></param>
 		static protected void LoadAssetBundle(string assetBundleName, bool isLoadingAssetBundleManifest = false)
 		{
 			Log(LogType.Info, "Loading Asset Bundle " + (isLoadingAssetBundleManifest ? "Manifest: " : ": ") + assetBundleName);
@@ -306,15 +312,15 @@ namespace AssetBundles
 			// But in the real case, users can call LoadAssetAsync()/LoadLevelAsync() several times then wait them to be finished which might have duplicate WWWs.
 			if (m_DownloadingWWWs.ContainsKey(assetBundleName) )
 				return true;
-	
-			WWW download = null;
+
+            UnityWebRequest download = null;
 			string url = m_BaseDownloadingURL + assetBundleName;
 		
 			// For manifest assetbundle, always download it as we don't have hash for it.
 			if (isLoadingAssetBundleManifest)
-				download = new WWW(url);
+				download = new UnityWebRequest(url);
 			else
-				download = WWW.LoadFromCacheOrDownload(url, m_AssetBundleManifest.GetAssetBundleHash(assetBundleName), 0); 
+				download = UnityWebRequestAssetBundle.GetAssetBundle(url, m_AssetBundleManifest.GetAssetBundleHash(assetBundleName), 0); 
 	
 			m_DownloadingWWWs.Add(assetBundleName, download);
 	
@@ -398,7 +404,7 @@ namespace AssetBundles
 			var keysToRemove = new List<string>();
 			foreach (var keyValue in m_DownloadingWWWs)
 			{
-				WWW download = keyValue.Value;
+				UnityWebRequest download = keyValue.Value;
 	
 				// If downloading fails.
 				if (download.error != null)
@@ -411,7 +417,8 @@ namespace AssetBundles
 				// If downloading succeeds.
 				if(download.isDone)
 				{
-					AssetBundle bundle = download.assetBundle;
+					AssetBundle bundle = (download.downloadHandler as DownloadHandlerAssetBundle).assetBundle;
+
 					if (bundle == null)
 					{
 						m_DownloadingErrors.Add(keyValue.Key, string.Format("{0} is not a valid asset bundle.", keyValue.Key));
@@ -420,7 +427,7 @@ namespace AssetBundles
 					}
 				
 					//Debug.Log("Downloading " + keyValue.Key + " is done at frame " + Time.frameCount);
-					m_LoadedAssetBundles.Add(keyValue.Key, new LoadedAssetBundle(download.assetBundle) );
+					m_LoadedAssetBundles.Add(keyValue.Key, new LoadedAssetBundle(bundle) );
 					keysToRemove.Add(keyValue.Key);
 				}
 			}
@@ -428,7 +435,7 @@ namespace AssetBundles
 			// Remove the finished WWWs.
 			foreach( var key in keysToRemove)
 			{
-				WWW download = m_DownloadingWWWs[key];
+                UnityWebRequest download = m_DownloadingWWWs[key];
 				m_DownloadingWWWs.Remove(key);
 				download.Dispose();
 			}
@@ -446,6 +453,11 @@ namespace AssetBundles
 		}
 	
 		// Load asset from the given assetBundle.
+        /// <summary>从AssetBundle加载指定资源</summary>
+        /// <param name="assetBundleName"></param>
+        /// <param name="assetName"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
 		static public AssetBundleLoadAssetOperation LoadAssetAsync (string assetBundleName, string assetName, System.Type type)
 		{
 			Log(LogType.Info, "Loading " + assetName + " from " + assetBundleName + " bundle");
