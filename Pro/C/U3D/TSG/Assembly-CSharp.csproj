@@ -305,6 +305,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/Soft/Unity/Unity2018.3.0/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="AssetBundleManager.API">
+      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/AssetBundleManager/Dlls/AssetBundleManager.API.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/Plugins/DOTween.dll</HintPath>
     </Reference>
@@ -325,9 +328,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="AssetBundleManager.API">
-      <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Assets/AssetBundleManager/Dlls/AssetBundleManager.API.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Soft/Unity/Unity2018.3.0/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
