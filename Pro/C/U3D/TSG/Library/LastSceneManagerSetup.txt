@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Virtual Joystick Pack/Examples/3D Example/3DExampleScene.unity
+  isLoaded: 1
+  isActive: 1
