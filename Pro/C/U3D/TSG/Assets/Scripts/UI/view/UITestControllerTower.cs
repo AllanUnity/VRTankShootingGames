@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UITestControllerTower : MonoBehaviour
 {
     public TKTowerModelBase tower;
+    public UIJoystick joystick;
     public InputField towerInputField;
     public InputField gunInputField;
     public Button countersignBtn;
@@ -17,13 +18,41 @@ public class UITestControllerTower : MonoBehaviour
             float towerF = float.Parse(towerInputField.text);
             float gunF = float.Parse(gunInputField.text);
 
-            tower.RotateTower(towerF, gunF);
+            tower.RotateTower(new Vector2(towerF, gunF));
         });
+        joystick.JoystickEvent += JoytickCallBack;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void JoytickCallBack(Vector2 vector)
     {
-
+        float h = vector.x;
+        float v = vector.y;
+        RotateType hType = RotateType.Stop;
+        RotateType vType = RotateType.Stop;
+        if (h<0)
+        {
+            hType=(RotateType.Left);
+        }
+        if (h>0)
+        {
+            hType=(RotateType.Right);
+        }
+        if (h==0)
+        {
+            hType=(RotateType.Stop);
+        }
+        if (v<0)
+        {
+            vType = RotateType.Down;
+        }
+        if (v>0)
+        {
+            vType = RotateType.Up;
+        }
+        if (v==0)
+        {
+            vType = RotateType.Stop;
+        }
+        tower.RotateTower(hType, vType);
     }
 }

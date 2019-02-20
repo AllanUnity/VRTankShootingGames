@@ -22,11 +22,14 @@ public class TKTowerModelBase : MonoBehaviour
     public float verticalRotateSpeed;
 
     /// <summary>旋转方向</summary>
-    public RotateType rotateType;
+    public RotateType rotateHorizontalType;
+    public RotateType rotateVerticalType;
 
     /// <summary>旋转炮塔</summary>
-    public void RotateTower(float tower, float gun)
+    public void RotateTower(Vector2 vector)
     {
+        float tower = vector.x;
+        float gun = vector.y;
         if (tower >= 180)
         {
             do
@@ -34,12 +37,12 @@ public class TKTowerModelBase : MonoBehaviour
                 tower -= 180;
             } while (tower >= 180);
         }
-        else if (tower<=-180)
+        else if (tower <= -180)
         {
             do
             {
                 tower += 180;
-            } while (tower<=-180);
+            } while (tower <= -180);
         }
         if (gun >= 180)
         {
@@ -58,9 +61,10 @@ public class TKTowerModelBase : MonoBehaviour
         towerTargetAngles = tower;
         gunTargetAngles = gun;
     }
-    public void RotateTower(RotateType type)
+    public void RotateTower(RotateType horizontalType, RotateType verticalType)
     {
-        rotateType = type;
+        rotateHorizontalType = horizontalType;
+        rotateVerticalType = verticalType;
     }
 
     public void Update()
@@ -75,13 +79,50 @@ public class TKTowerModelBase : MonoBehaviour
 
     public virtual void ChangeTargetAngles()
     {
-        switch (rotateType)
+        switch (rotateHorizontalType)
         {
             case RotateType.Left:
-                towerTargetAngles += (Time.deltaTime*horizontalRotateSpeed);
+                {
+                    towerTargetAngles += (Time.deltaTime * horizontalRotateSpeed);
+                    if (towerTargetAngles > 360)
+                    {
+                        towerTargetAngles -= 360;
+                        currentTowerAngles -= 360;
+                    }
+                }
                 break;
             case RotateType.Right:
-                towerTargetAngles -= (Time.deltaTime * horizontalRotateSpeed);
+                {
+                    towerTargetAngles -= (Time.deltaTime * horizontalRotateSpeed);
+                    if (towerTargetAngles < 0)
+                    {
+                        towerTargetAngles += 360;
+                        currentTowerAngles += 360;
+                    }
+                }
+                break;
+        }
+        switch (rotateVerticalType)
+        {
+            case RotateType.Down:
+                {
+                    gunTargetAngles -= (Time.deltaTime * verticalRotateSpeed);
+                    if (gunTargetAngles < 0)
+                    {
+                        gunTargetAngles += 360;
+                        currentGunAngles += 360;
+                    }
+                }
+                break;
+            case RotateType.Up:
+                {
+                    gunTargetAngles += (Time.deltaTime * verticalRotateSpeed);
+                    if (gunTargetAngles > 0)
+                    {
+                        gunTargetAngles -= 360;
+                        currentGunAngles -= 360;
+                    }
+                }
                 break;
         }
     }
@@ -112,7 +153,9 @@ public class TKTowerModelBase : MonoBehaviour
 
 public enum RotateType
 {
-    Left,
     Stop,
-    Right
+    Left,
+    Right,
+    Up,
+    Down
 }
