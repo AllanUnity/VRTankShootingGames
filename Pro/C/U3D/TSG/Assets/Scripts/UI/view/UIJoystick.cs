@@ -20,6 +20,10 @@ public class UIJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
     /// <summary>拖动中心</summary>
     private Vector2 joystickCenter = Vector2.zero;
 
+    public delegate void JoystickDelegate(Vector2 vector);
+    /// <summary>拖动事件</summary>
+    public event JoystickDelegate JoystickEvent;
+
     void Start()
     {
         dragMagnitude = background.sizeDelta.x / 2;
@@ -45,7 +49,7 @@ public class UIJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
         ClampJoystick();
         handle.anchoredPosition = inputVector * dragMagnitude;
 
-        Debug.Log(inputVector);
+        JoystickEvent(inputVector);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -67,7 +71,8 @@ public class UIJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
         }
         inputVector = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
-        Debug.Log(inputVector);
+
+        JoystickEvent(inputVector);
     }
     protected void ClampJoystick()
     {
@@ -77,3 +82,5 @@ public class UIJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
             inputVector = new Vector2(0f, inputVector.y);
     }
 }
+
+
