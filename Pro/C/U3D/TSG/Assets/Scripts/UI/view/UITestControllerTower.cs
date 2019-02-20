@@ -1,16 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UITestControllerTower : MonoBehaviour
 {
+    /// <summary>炮塔</summary>
     public TKTowerModelBase tower;
+    public TKAbramsFireController fireController;
+    /// <summary>摇杆</summary>
     public UIJoystick joystick;
+    /// <summary>炮塔角度输入</summary>
     public InputField towerInputField;
+    /// <summary>炮管角度输入</summary>
     public InputField gunInputField;
+    /// <summary>确定</summary>
     public Button countersignBtn;
-    // Start is called before the first frame update
+
+    public Button fireBtn;
+
     void Start()
     {
         countersignBtn.onClick.AddListener(() =>
@@ -21,38 +28,16 @@ public class UITestControllerTower : MonoBehaviour
             tower.RotateTower(new Vector2(towerF, gunF));
         });
         joystick.JoystickEvent += JoytickCallBack;
+        fireBtn.onClick.AddListener(FireOnClick);
+    }
+
+    private void FireOnClick()
+    {
+        fireController.Fire();
     }
 
     private void JoytickCallBack(Vector2 vector)
     {
-        float h = vector.x;
-        float v = vector.y;
-        RotateType hType = RotateType.Stop;
-        RotateType vType = RotateType.Stop;
-        if (h<0)
-        {
-            hType=(RotateType.Left);
-        }
-        if (h>0)
-        {
-            hType=(RotateType.Right);
-        }
-        if (h==0)
-        {
-            hType=(RotateType.Stop);
-        }
-        if (v<0)
-        {
-            vType = RotateType.Down;
-        }
-        if (v>0)
-        {
-            vType = RotateType.Up;
-        }
-        if (v==0)
-        {
-            vType = RotateType.Stop;
-        }
-        tower.RotateTower(hType, vType);
+        tower.RotateTower(vector.x,vector.y);
     }
 }

@@ -22,8 +22,8 @@ public class TKTowerModelBase : MonoBehaviour
     public float verticalRotateSpeed;
 
     /// <summary>旋转方向</summary>
-    public RotateType rotateHorizontalType;
-    public RotateType rotateVerticalType;
+    public float rotateHorizontalType;
+    public float rotateVerticalType;
 
     /// <summary>旋转炮塔</summary>
     public void RotateTower(Vector2 vector)
@@ -61,7 +61,8 @@ public class TKTowerModelBase : MonoBehaviour
         towerTargetAngles = tower;
         gunTargetAngles = gun;
     }
-    public void RotateTower(RotateType horizontalType, RotateType verticalType)
+    /// <summary>炮塔旋转</summary>
+    public void RotateTower(float horizontalType, float verticalType)
     {
         rotateHorizontalType = horizontalType;
         rotateVerticalType = verticalType;
@@ -76,86 +77,32 @@ public class TKTowerModelBase : MonoBehaviour
         ChangeTargetAngles();
         RotateCurrentTowerAndGun();
     }
-
+    /// <summary>自增目标角度</summary>
     public virtual void ChangeTargetAngles()
     {
-        switch (rotateHorizontalType)
+        towerTargetAngles += (Time.deltaTime * horizontalRotateSpeed * rotateHorizontalType);
+        if (towerTargetAngles > 360)
         {
-            case RotateType.Left:
-                {
-                    towerTargetAngles += (Time.deltaTime * horizontalRotateSpeed);
-                    if (towerTargetAngles > 360)
-                    {
-                        towerTargetAngles -= 360;
-                        currentTowerAngles -= 360;
-                    }
-                }
-                break;
-            case RotateType.Right:
-                {
-                    towerTargetAngles -= (Time.deltaTime * horizontalRotateSpeed);
-                    if (towerTargetAngles < 0)
-                    {
-                        towerTargetAngles += 360;
-                        currentTowerAngles += 360;
-                    }
-                }
-                break;
+            towerTargetAngles -= 360;
+            currentTowerAngles -= 360;
         }
-        switch (rotateVerticalType)
+
+        gunTargetAngles -= (Time.deltaTime * verticalRotateSpeed * rotateVerticalType);
+        if (gunTargetAngles < 0)
         {
-            case RotateType.Down:
-                {
-                    gunTargetAngles -= (Time.deltaTime * verticalRotateSpeed);
-                    if (gunTargetAngles < 0)
-                    {
-                        gunTargetAngles += 360;
-                        currentGunAngles += 360;
-                    }
-                }
-                break;
-            case RotateType.Up:
-                {
-                    gunTargetAngles += (Time.deltaTime * verticalRotateSpeed);
-                    if (gunTargetAngles > 0)
-                    {
-                        gunTargetAngles -= 360;
-                        currentGunAngles -= 360;
-                    }
-                }
-                break;
+            gunTargetAngles += 360;
+            currentGunAngles += 360;
         }
     }
     /// <summary>旋转炮塔和炮管</summary>
     public virtual void RotateCurrentTowerAndGun()
     {
-        if (currentTowerAngles < towerTargetAngles)
-        {
-            currentTowerAngles = currentTowerAngles + (horizontalRotateSpeed * Time.deltaTime);
-        }
-        if (currentTowerAngles > towerTargetAngles)
-        {
-            currentTowerAngles = currentTowerAngles - (horizontalRotateSpeed * Time.deltaTime);
-        }
+        if (currentTowerAngles < towerTargetAngles) { currentTowerAngles = currentTowerAngles + (horizontalRotateSpeed * Time.deltaTime); }
+        if (currentTowerAngles > towerTargetAngles) { currentTowerAngles = currentTowerAngles - (horizontalRotateSpeed * Time.deltaTime); }
 
-        if (currentGunAngles < gunTargetAngles)
-        {
-            currentGunAngles = currentGunAngles + (verticalRotateSpeed * Time.deltaTime);
-        }
-        if (currentGunAngles > gunTargetAngles)
-        {
-            currentGunAngles = currentGunAngles - (verticalRotateSpeed * Time.deltaTime);
-        }
+        if (currentGunAngles < gunTargetAngles) { currentGunAngles = currentGunAngles + (verticalRotateSpeed * Time.deltaTime); }
+        if (currentGunAngles > gunTargetAngles) { currentGunAngles = currentGunAngles - (verticalRotateSpeed * Time.deltaTime); }
 
         towerControllerBase.SetTargetVector(currentTowerAngles, currentGunAngles);
     }
-}
-
-public enum RotateType
-{
-    Stop,
-    Left,
-    Right,
-    Up,
-    Down
 }
