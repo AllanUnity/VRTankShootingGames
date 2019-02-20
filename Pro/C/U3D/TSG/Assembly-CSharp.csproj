@@ -68,7 +68,9 @@
     <Compile Include="Assets\AssetBundleManager\LogType.cs" />
     <Compile Include="Assets\AssetBundleManager\Utility.cs" />
     <Compile Include="Assets\Car Script basic\Script\Dot_Truck_Controller.cs" />
+    <Compile Include="Assets\Scripts\Controller\TankController\Base\TKFireControllBase.cs" />
     <Compile Include="Assets\Scripts\Controller\TankController\Base\TKTowerControllerBase.cs" />
+    <Compile Include="Assets\Scripts\Controller\TankController\TKAbramsFireController.cs" />
     <Compile Include="Assets\Scripts\Controller\TankController\TKAbramsTowerController.cs" />
     <Compile Include="Assets\Scripts\ENUM\CEvent.cs" />
     <Compile Include="Assets\Scripts\ENUM\CGameState.cs" />
@@ -95,12 +97,6 @@
     <Compile Include="Assets\Scripts\UI\view\UITestControllerTower.cs" />
     <Compile Include="Assets\Scripts\Utility\ShowFPS.cs" />
     <Compile Include="Assets\Scripts\Utility\Utility.cs" />
-    <Compile Include="Assets\Virtual Joystick Pack\Examples\2D Example\Player2DExample.cs" />
-    <Compile Include="Assets\Virtual Joystick Pack\Examples\3D Example\Player3DExample.cs" />
-    <Compile Include="Assets\Virtual Joystick Pack\Scripts\Base\Joystick.cs" />
-    <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
-    <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
-    <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
