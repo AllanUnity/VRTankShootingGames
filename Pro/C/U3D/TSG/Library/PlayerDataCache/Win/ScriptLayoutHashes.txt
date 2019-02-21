@@ -1,6 +1,0 @@
-Win
-PlayerPath?
-E:/Project/Unity/Git/VRTankShootingGames/Pro/C/U3D/TSG/AssetBundles/Windows/tanks-scene-bundle
-SceneListBegin?
-Assets/AssetBundleManager/AssetBundleSample/SampleAssets/Tanks/Scenes/TanksExample.unity
-SceneListEnd?
