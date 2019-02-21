@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TKAbramsFireController : TKFireControllBase
+public class TKAbramsFireController : MonoBehaviour
 {
-   
+    public GameObject bulletPrefab;
+    public GameObject firePosition;
+
+    public void Fire()
+    {
+        GameObject _bullet = Instantiate(bulletPrefab, firePosition.transform.position, firePosition.transform.rotation);
+        _bullet.GetComponent<TKBullet>().FireInit(this);
+    }
+
 }

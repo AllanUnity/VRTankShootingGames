@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UITestControllerTower : MonoBehaviour
 {
     /// <summary>炮塔</summary>
-    public TKTowerModelBase tower;
+    public TKTowerController tower;
+    /// <summary>发射单元</summary>
     public TKAbramsFireController fireController;
     /// <summary>摇杆</summary>
     public UIJoystick joystick;
