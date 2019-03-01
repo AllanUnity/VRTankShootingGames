@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>UI注册机</summary>
 public class UIEnroll 
@@ -30,8 +28,7 @@ public class UIEnroll
     }
     private void Init()
     {
-        uiEnroll.Add(new Entry(typeof(UITankController), "UITankController", 0, "UI/view"));
-        uiEnroll.Add(new Entry(typeof(UIShowSight), "UIShowSight", 1, "UI/view"));
+        uiEnroll.Add(new Entry(typeof(UITEASER), "UITEASER", 101, "UI/view"));
         uiEnroll.Add(new Entry(typeof(UICombatMainPanel), "UICombatMainPanel", 301, "UI/view"));
     }
    

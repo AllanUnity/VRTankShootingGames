@@ -1,4 +1,4 @@
-﻿interface IOnUpdate
+﻿public interface IOnUpdate
 {
     void OnUpdate();
 }

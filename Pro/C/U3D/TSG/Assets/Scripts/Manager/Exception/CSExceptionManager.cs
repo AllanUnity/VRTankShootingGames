@@ -13,7 +13,7 @@ public class CSExceptionManager : CSMonoSingleton<CSExceptionManager>
     public override void Init()
     {
         base.Init();
-        Debug.Log("异常管理类初始化");
+        //Debug.Log("异常管理类初始化");
         //    return;
         //    LogPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf("/"));
         //    BugExePath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf("/")) + "\\Bug.exe";

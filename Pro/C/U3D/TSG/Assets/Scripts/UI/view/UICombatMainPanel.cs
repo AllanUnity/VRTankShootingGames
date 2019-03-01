@@ -1,29 +1,29 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>战斗主界面</summary>
 public class UICombatMainPanel : UIBase
 {
+    private CSTimeManager timeManager;
     #region UIBase
     public override void Init()
     {
         base.Init();
-        CSTimeManager.Singleton.GetCurrentTimeEvent -= ShowCurrentTime;
-        CSTimeManager.Singleton.GetCurrentTimeEvent += ShowCurrentTime;
+        timeManager = CSTimeManager.Singleton;
+        timeManager.GetCurrentTimeEvent -= ShowCurrentTime;
+        timeManager.GetCurrentTimeEvent += ShowCurrentTime;
         InitController();
+        InitTankMessage();
     }
     public override void Hide()
     {
         base.Hide();
-        CSTimeManager.Singleton.GetCurrentTimeEvent -= ShowCurrentTime;
+        timeManager.GetCurrentTimeEvent -= ShowCurrentTime;
     }
     public override void Close()
     {
         base.Close();
-        CSTimeManager.Singleton.GetCurrentTimeEvent -= ShowCurrentTime;
+        timeManager.GetCurrentTimeEvent -= ShowCurrentTime;
     }
     #endregion
     #region 比分
@@ -33,11 +33,20 @@ public class UICombatMainPanel : UIBase
 
     #endregion
     #region 坦克信息
+    /// <summary>坦克血量</summary>
+    public Image HPImage;
+    /// <summary>设置血量</summary>
+    /// <param name="currentHP"></param>
+    /// <param name="maxHP"></param>
+    private void TankHP(int currentHP, int maxHP)
+    {
+        HPImage.fillAmount = currentHP / maxHP;
+    }
     /// <summary>坦克前方摄像头</summary>
     public RawImage TankFrontRawImage;
     private void InitTankMessage()
     {
-        TankFrontRawImage.texture = CSGame.Instance.tkController.sightTexture;
+        CSPlayerManager.Singleton.GetSight(TankFrontRawImage);
     }
     #endregion
 
@@ -67,22 +76,10 @@ public class UICombatMainPanel : UIBase
     public UIJoystick joystick;
     /// <summary>开火1按钮</summary>
     public Button fire1Btn;
-    /// <summary>开火2按钮</summary>
-    public Button fire2Btn;
     public void InitController()
     {
-        joystick.JoystickEvent += (vector) =>
-        {
-            CSGame.Instance.tkController.towerController.RotateTower(vector.x, vector.y);
-        };
-        fire1Btn.onClick.AddListener(() =>
-        {
-            CSGame.Instance.tkController.fireController.Fire(BulletType.Default0);
-        });
-        fire2Btn.onClick.AddListener(() =>
-        {
-            CSGame.Instance.tkController.fireController.Fire(BulletType.Default1);
-        });
+        joystick.JoystickEvent += CSPlayerManager.Singleton.RotateTower;
+        fire1Btn.onClick.AddListener(CSPlayerManager.Singleton.Fire);
     }
 
     #endregion

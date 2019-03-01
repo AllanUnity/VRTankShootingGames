@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>继承自Mono的单例</summary>
 /// <typeparam name="T"></typeparam>
@@ -32,6 +30,5 @@ public class CSMonoSingleton<T> : MonoBehaviour where T : CSMonoSingleton<T>
     }
 
     public virtual void Init() { }
-    public virtual void OnUpdate() { }
 
 }
