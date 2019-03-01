@@ -52,12 +52,14 @@ public class CSGame : MonoBehaviour
     private Vector2 sceneSize;
     public Vector2 SceneSize { get { return sceneSize; } }
 
+    
+
     /// <summary>主UI</summary>
     public Transform MainCanvas;
     #endregion
     /// <summary>常驻资源</summary>
     [SerializeField]
-    private Dictionary<string,GameObject> residentAssets;
+    private Dictionary<string,GameObject> residentAssets=new Dictionary<string, GameObject>();
     public GameObject GetStaticObj(string typeName)
     {
         GameObject obj;
@@ -85,12 +87,35 @@ public class CSGame : MonoBehaviour
         Application.targetFrameRate = 45;
 
         InitMonoManager();
+        InitPlayer();
     }
+
+
     private void InitMonoManager()
     {
         UILayerManager.Initialize(transform);
         CSExceptionManager.Initialize(transform);
         UIManager.Initialize(transform);
+        CSTimeManager.Initialize(transform);
+    }
+
+
+    public GameObject tankPrefab;
+    public TKController tkController;
+    private void InitPlayer()
+    {
+        GameObject Player_Abrams = Instantiate(tankPrefab);
+        tkController = Player_Abrams.GetComponent<TKController>();
+        tkController.Init();
+
+        //UIManager.Instance.OpenPanel<UITankController>();
+        //UIManager.Instance.OpenPanel<UIShowSight>();
+        UIManager.Singleton.OpenPanel<UICombatMainPanel>();
+    }
+
+    private void Update()
+    {
+        CSTimeManager.Singleton.OnUpdate();
     }
     private void Quit()
     {

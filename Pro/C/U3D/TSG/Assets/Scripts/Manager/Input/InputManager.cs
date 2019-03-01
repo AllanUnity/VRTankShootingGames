@@ -11,15 +11,15 @@ public class InputManager : CSMonoSingleton<InputManager>
     Dictionary<KeyCode, List<InputDelegate>> keysDelegate = new Dictionary<KeyCode, List<InputDelegate>>();
     public static void Add(KeyCode key, InputDelegate callback)
     {
-        Instance.AddCode(key, callback);
+        Singleton.AddCode(key, callback);
     }
     public static void Remove(KeyCode key)
     {
-        Instance.RemoveCode(key);
+        Singleton.RemoveCode(key);
     }
     public static void Remove(KeyCode key, InputDelegate callback)
     {
-        Instance.RemoveCode(key, callback);
+        Singleton.RemoveCode(key, callback);
     }
     public override void Init()
     {

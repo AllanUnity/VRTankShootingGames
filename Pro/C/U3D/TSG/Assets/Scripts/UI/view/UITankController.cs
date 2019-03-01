@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UITestControllerTower : MonoBehaviour
+public class UITankController : UIBase
 {
     /// <summary>炮塔</summary>
     public TKTowerController tower;
@@ -18,26 +18,38 @@ public class UITestControllerTower : MonoBehaviour
 
     public Button fireBtn;
 
-    void Start()
+    public override void Init()
     {
+        base.Init();
         countersignBtn.onClick.AddListener(() =>
         {
             float towerF = float.Parse(towerInputField.text);
             float gunF = float.Parse(gunInputField.text);
-
-            tower.RotateTower(new Vector2(towerF, gunF));
+            if (tower != null)
+            {
+                tower.RotateTower(new Vector2(towerF, gunF));
+            }
         });
         joystick.JoystickEvent += JoytickCallBack;
         fireBtn.onClick.AddListener(FireOnClick);
+        tower = CSGame.Instance.tkController.towerController;
+        fireController = CSGame.Instance.tkController.fireController;
     }
 
+    private void FixedUpdate()
+    {
+
+    }
     private void FireOnClick()
     {
-        fireController.Fire();
+        fireController.Fire(BulletType.Default0);
     }
 
     private void JoytickCallBack(Vector2 vector)
     {
-        tower.RotateTower(vector.x,vector.y);
+        if (tower != null)
+        {
+            tower.RotateTower(vector.x, vector.y);
+        }
     }
 }

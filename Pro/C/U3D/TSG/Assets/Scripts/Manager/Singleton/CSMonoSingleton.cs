@@ -7,7 +7,7 @@ using UnityEngine;
 public class CSMonoSingleton<T> : MonoBehaviour where T : CSMonoSingleton<T>
 {
     private static T instance = default(T);
-    public static T Instance
+    public static T Singleton
     {
         get
         {
@@ -31,20 +31,7 @@ public class CSMonoSingleton<T> : MonoBehaviour where T : CSMonoSingleton<T>
         instance.Init();
     }
 
-    /// <summary>是否销毁</summary>
-    public virtual bool IsDonnotDestroy { get { return false; } }
-
     public virtual void Init() { }
-    public virtual void Destroy()
-    {
-        if (gameObject!=null)
-        {
-            if (!IsDonnotDestroy)
-            {
-                UnityEngine.Object.Destroy(gameObject);
-                instance = null;
-            }
-        }
-    }
+    public virtual void OnUpdate() { }
 
 }

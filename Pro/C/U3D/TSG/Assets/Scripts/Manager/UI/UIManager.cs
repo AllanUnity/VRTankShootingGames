@@ -142,6 +142,10 @@ public class UIManager : CSMonoSingleton<UIManager>
         }
         return null;
     }
+    /// <summary>获取隐藏的面板</summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="uiid"></param>
+    /// <returns></returns>
     public T GetHidePanel<T>(int uiid = 0) where T : UIBase
     {
         Type type = typeof(T);
@@ -195,19 +199,18 @@ public class UIManager : CSMonoSingleton<UIManager>
         ui = GetHidePanel<T>(id);
         if (ui != null)
         {
-            if (cb != null)
-            {
-                cb(ui);
-            }
+            cb?.Invoke(ui);
+
             RemoveHidePanel(ui, id);
             AddShowPanel(ui, id);
             return;
         }
-        CSGame.Instance.StartCoroutine(LoadUIPanelPrefab(typeof(T), cb));
+        CSGame.Instance.StartCoroutine(LoadUIPanelPrefab<T>(id, cb));
     }
 
-    private IEnumerator LoadUIPanelPrefab(Type type, DelegateOpenPanelCallBack cb)
+    private IEnumerator LoadUIPanelPrefab<T>(int id, DelegateOpenPanelCallBack cb) where T : UIBase
     {
+        Type type = typeof(T);
         Entry entry = UIEnroll.Instance.FindEntry(type.Name);
         if (entry == null || entry.path == null || string.IsNullOrEmpty(entry.path))
         {
@@ -215,8 +218,29 @@ public class UIManager : CSMonoSingleton<UIManager>
             yield break;
         }
         GameObject prefab = CSGame.Instance.GetStaticObj(entry.type.Name);
+        if (prefab == null)
+        {
+            prefab = Resources.Load(entry.path + "/" + entry.typeName) as GameObject;
+        }
+        if (prefab == null)
+        {
+            UnityEngine.Debug.LogError("界面管理错误: 未找到预设体");
+            yield break;
+        }
+        GameObject uiGame = Instantiate(prefab);
+        uiGame.SetActive(true);
+        UIBase ui = uiGame.GetComponent<T>();
+        if (ui != null)
+        {
+            UILayerManager.Singleton.SetLayer(uiGame, ui.PanelLayerType);
 
+            ui.Init();
+            ui.Show();
 
+            cb?.Invoke(ui);
+
+            AddShowPanel(ui, id);
+        }
     }
     private void InstantiateUI(GameObject prefab)
     {

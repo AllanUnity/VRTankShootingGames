@@ -30,13 +30,22 @@ public class UIEnroll
     }
     private void Init()
     {
-
+        uiEnroll.Add(new Entry(typeof(UITankController), "UITankController", 0, "UI/view"));
+        uiEnroll.Add(new Entry(typeof(UIShowSight), "UIShowSight", 1, "UI/view"));
+        uiEnroll.Add(new Entry(typeof(UICombatMainPanel), "UICombatMainPanel", 301, "UI/view"));
     }
    
 }
 [Serializable]
 public class Entry
 {
+    public Entry(Type type,string typeName,int id,string path)
+    {
+        this.type = type;
+        this.typeName = typeName;
+        this.id = id;
+        this.path = path;
+    }
     public Type type;
     public string typeName;
     public int id;

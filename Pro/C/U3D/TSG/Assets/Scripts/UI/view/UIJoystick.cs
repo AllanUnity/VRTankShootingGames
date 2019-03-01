@@ -3,19 +3,13 @@ using UnityEngine.EventSystems;
 
 public class UIJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-    [Header("Components")]
-    public RectTransform background;
     public RectTransform handle;
 
-    [Header("Variable Joystick Options")]
-    public bool isFixed = true;
-
-    [Header("Joystick Model")]
-    public JoystickMode joystickMode=JoystickMode.AllAxis;
+    public JoystickMode joystickMode = JoystickMode.AllAxis;
 
     private Vector2 inputVector = Vector2.zero;
     /// <summary>拖动的最大长度</summary>
-    private float dragMagnitude;
+    public float dragMagnitude;
 
     /// <summary>拖动中心</summary>
     private Vector2 joystickCenter = Vector2.zero;
@@ -23,26 +17,16 @@ public class UIJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
     public delegate void JoystickDelegate(Vector2 vector);
     /// <summary>拖动事件</summary>
     public event JoystickDelegate JoystickEvent;
-
+    public Vector3 displacement;
     void Start()
     {
-        dragMagnitude = background.sizeDelta.x / 2;
-        if (isFixed)
-        {
-            handle.anchoredPosition = Vector2.zero;
-            background.gameObject.SetActive(false);
-        }
-        else
-        {
-            joystickCenter = Vector2.zero;
-            background.gameObject.SetActive(true);
-            handle.anchoredPosition = Vector2.zero;
-            background.anchoredPosition = Vector2.zero;
-        }
+        joystickCenter = Vector2.zero;
+        handle.anchoredPosition = Vector2.zero;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        
         Vector2 direction = eventData.position - joystickCenter;
         float magnitude = direction.magnitude;//拖动长度
         inputVector = (magnitude > dragMagnitude) ? direction.normalized : direction / (dragMagnitude);
@@ -54,21 +38,13 @@ public class UIJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isFixed)
-        {
-            background.gameObject.SetActive(true);
-            background.position = eventData.position;
-            handle.anchoredPosition = Vector2.zero;
-        }
+        Vector3 vector3 =new Vector3( eventData.position.x - displacement.x,eventData.position.y-displacement.y);
+        handle.anchoredPosition = Vector2.zero;
         joystickCenter = eventData.position;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isFixed)
-        {
-            background.gameObject.SetActive(false);
-        }
         inputVector = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
 
