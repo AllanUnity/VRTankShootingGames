@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>
+/// <summary>角色控制管理类</summary>
+public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>, IOnUpdate
 {
     public override void Init()
     {
         base.Init();
         InitPlayer();
     }
-    
+
     private TKController tkController;
-    private RenderTexture tkSightTexture;
+    private RenderTexture tkSightTexture = null;
+    /// <summary>控制方式选择</summary>
+    private TKControllerType controllerType = TKControllerType.Joystick;
     /// <summary>初始化角色</summary>
     private void InitPlayer()
     {
@@ -21,7 +21,7 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>
         Player_Abrams.transform.position = Vector3.zero;
         tkController = Player_Abrams.GetComponent<TKController>();
         tkController.Init();
-
+        ChangeReadyNextBullet(BulletType.Default0);
         UIManager.Singleton.OpenPanel<UICombatMainPanel>();
     }
 
@@ -34,17 +34,50 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>
     /// <summary>旋转</summary>
     public void RotateTower(Vector2 vec)
     {
-        RotateTower(vec.x, vec.y);
-    }
-    /// <summary>旋转</summary>
-    public void RotateTower(float x, float y)
-    {
-        tkController.towerController.RotateTower(x, y);
+        switch (controllerType)
+        {
+            case TKControllerType.None:
+                break;
+            case TKControllerType.Joystick:
+                tkController.towerController.RotateTower(vec.x, vec.y);
+                break;
+            case TKControllerType.Keyboard:
+                break;
+            case TKControllerType.Phone:
+                break;
+        }
     }
 
     /// <summary>开火</summary>
     public void Fire()
     {
-        tkController.fireController.Fire();
+        switch (controllerType)
+        {
+            case TKControllerType.None:
+                break;
+            case TKControllerType.Joystick:
+                tkController.fireController.Fire();
+                break;
+            case TKControllerType.Keyboard:
+                break;
+            case TKControllerType.Phone:
+                break;
+        }
+    }
+    /// <summary>更改下一发炮弹的种类</summary>
+    /// <param name="bt"></param>
+    public void ChangeReadyNextBullet(BulletType bt)
+    {
+        tkController.fireController.ReadyNextBullet(bt);
+    }
+
+    public void OnUpdate()
+    {
+
+    }
+
+    public void OnFixedUpdate()
+    {
+
     }
 }

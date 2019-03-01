@@ -8,7 +8,7 @@ public class CSGame : MonoBehaviour
 
     /// <summary>屏幕尺寸</summary>
     [SerializeField]
-    private Vector2 sceneSize;
+    private Vector2 sceneSize=new Vector2(1920,1080);
     /// <summary>屏幕尺寸</summary>
     public Vector2 SceneSize { get { return sceneSize; } }
 
@@ -139,18 +139,7 @@ public class CSGame : MonoBehaviour
         }
     }
     #endregion
-    List<IOnUpdate> updates = new List<IOnUpdate>();
-    public void AddUpdate(IOnUpdate message)
-    {
-        for (int i = 0; i < updates.Count; i++)
-        {
-            if (updates[i]==message)
-            {
-                return;
-            }
-        }
-        updates.Add(message);
-    }
+
     /// <summary>初始化管理类</summary>
     private void InitMonoManager()
     {
@@ -158,7 +147,7 @@ public class CSGame : MonoBehaviour
         CSExceptionManager.Initialize(transform);
         UIManager.Initialize(transform);
         CSTimeManager.Initialize(transform);
-
+        CSToolsManager.Initialize(transform);
         CSPlayerManager.Initialize(transform);
     }
 
@@ -166,20 +155,13 @@ public class CSGame : MonoBehaviour
 
     private void FixedUpdate()
     {
-        OnUpdate();
+      CSTimeManager.Singleton. OnFixedUpdate();
     }
-    private void OnUpdate()
+    private void Update()
     {
-        for (int i = 0; i < updates.Count; i++)
-        {
-            if (updates[i]==null)
-            {
-                updates.RemoveAt(i);
-                continue;
-            }
-            updates[i].OnUpdate();
-        }
+        CSTimeManager.Singleton.OnUpdate();
     }
+  
     private void Quit()
     {
         Application.Quit();

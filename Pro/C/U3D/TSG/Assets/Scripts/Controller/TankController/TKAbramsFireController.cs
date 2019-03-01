@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>发射单元</summary>
 public class TKAbramsFireController : MonoBehaviour
@@ -14,14 +12,16 @@ public class TKAbramsFireController : MonoBehaviour
          */
     /// <summary>备选炮弹</summary>
     public GameObject[] alternativeBullet;
+    /// <summary>下一发炮弹</summary>
+    private GameObject nextBullet;
     /// <summary>待发射炮弹</summary>
-    public GameObject bulletPrefab;
+    private GameObject bulletPrefab;
     /// <summary>发射位置</summary>
     public GameObject firePosition;
 
 
     /// <summary>预备下一发炮弹</summary>
-    private void ReadyNextBullet(BulletType bt)
+    public void ReadyNextBullet(BulletType bt)
     {
         if (alternativeBullet.Length <= 0)
         {
@@ -40,14 +40,14 @@ public class TKAbramsFireController : MonoBehaviour
         {
             case BulletType.Default0:
                 {
-                    bulletPrefab = alternativeBullet[0];
+                    nextBullet = alternativeBullet[0];
                 }
                 break;
             case BulletType.Default1:
                 {
                     if (alternativeBullet.Length >= 1)
                     {
-                        bulletPrefab = alternativeBullet[1];
+                        nextBullet = alternativeBullet[1];
                     }
                 }
                 break;
@@ -55,13 +55,13 @@ public class TKAbramsFireController : MonoBehaviour
                 {
                     if (alternativeBullet.Length >= 2)
                     {
-                        bulletPrefab = alternativeBullet[2];
+                        nextBullet = alternativeBullet[2];
                     }
                 }
                 break;
             default:
                 {
-                    bulletPrefab = alternativeBullet[0];
+                    nextBullet = alternativeBullet[0];
                 }
                 break;
         }
@@ -69,8 +69,22 @@ public class TKAbramsFireController : MonoBehaviour
     /// <summary>开火</summary>
     public void Fire()
     {
+        if (TimeRemaining > 0)
+        {
+            Debug.Log("炮弹未装填完毕!!!");
+            return;
+        }
         GameObject _bullet = Instantiate(bulletPrefab, firePosition.transform.position, firePosition.transform.rotation);
         _bullet.GetComponent<TKBullet>().FireInit(this);
+    }
+    /// <summary>装填时间</summary>
+    private float cdTime = 2;
+    /// <summary>剩余装填时间</summary>
+    private float TimeRemaining = 0;
+    /// <summary>倒计时</summary>
+    private void StartLoadingShells()
+    {
+
     }
 
 }

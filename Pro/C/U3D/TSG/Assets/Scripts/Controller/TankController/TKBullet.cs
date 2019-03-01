@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+/// <summary>坦克炮弹</summary>
 public class TKBullet : MonoBehaviour
 {
 
@@ -13,7 +14,7 @@ public class TKBullet : MonoBehaviour
     /// <summary>发射者</summary>
     private TKAbramsFireController fireTrans;
     /// <summary>发射点的位置</summary>
-    private Vector3 firePostion;
+    private Vector3 firePostion=Vector3.one;
     /// <summary>炮弹开始飞行的时间</summary>
     private float fireStartTime;
 

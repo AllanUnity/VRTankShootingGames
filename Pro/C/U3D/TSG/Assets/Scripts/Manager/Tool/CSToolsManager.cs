@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ToolsManager : MonoBehaviour {
-
-    private static ToolsManager instance;
-
-    public static ToolsManager Instance
+/// <summary>工具管理类</summary>
+public class CSToolsManager : CSMonoSingleton<CSToolsManager>
+{
+    public override void Init()
     {
-        get
-        {
-            return instance;
-        }
+        base.Init();
     }
 
     /// <summary>

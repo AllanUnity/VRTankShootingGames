@@ -14,6 +14,7 @@ public class UICombatMainPanel : UIBase
         timeManager.GetCurrentTimeEvent += ShowCurrentTime;
         InitController();
         InitTankMessage();
+        InitBullet();
     }
     public override void Hide()
     {
@@ -47,6 +48,11 @@ public class UICombatMainPanel : UIBase
     private void InitTankMessage()
     {
         CSPlayerManager.Singleton.GetSight(TankFrontRawImage);
+    }
+    public Button bulletPrefab;
+    public void InitBullet()
+    {
+
     }
     #endregion
 
