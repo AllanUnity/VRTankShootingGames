@@ -23,4 +23,11 @@ public class CSToolsManager : CSMonoSingleton<CSToolsManager>
     {
         return StartCoroutine(ienum);
     }
+
+    /// <summary>获取屏幕截图</summary>
+    /// <param name="captureName"></param>
+    public void GetCaptureScreenshot(string captureName)
+    {
+        UnityEngine.ScreenCapture.CaptureScreenshot(captureName);
+    }
 }

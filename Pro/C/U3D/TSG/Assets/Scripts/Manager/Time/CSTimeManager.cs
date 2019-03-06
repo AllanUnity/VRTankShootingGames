@@ -47,4 +47,10 @@ public class CSTimeManager : CSMonoSingleton<CSTimeManager>
             updates[i].OnFixedUpdate();
         }
     }
+
+    /// <summary>当前手机时间</summary>
+    public static DateTime GetPhoTime()
+    {
+        return DateTime.Now;
+    }
 }
