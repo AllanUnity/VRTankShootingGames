@@ -1,10 +1,18 @@
-﻿using UnityEngine;
+﻿using Net;
+using UnityEngine;
 
 /// <summary>网络管理</summary>
 public class CSNetManager : CSMonoSingleton<CSNetManager>
 {
 
-
+    public override void Init()
+    {
+        base.Init();
+        return;
+        ClientSocket socket = new ClientSocket();
+        socket.ConnectServer("127.0.0.1", 8888);
+        socket.SendMessage("服务器傻逼");
+    }
     /// <summary>当前网络状态</summary>
     public string GetNetwork()
     {

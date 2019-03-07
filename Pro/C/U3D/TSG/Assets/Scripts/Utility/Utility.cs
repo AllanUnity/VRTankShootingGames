@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LitJson;
+using UnityEngine;
 
 /// <summary>工具类</summary>
 public class Utility
@@ -21,8 +22,35 @@ public class Utility
 
         return transform.GetComponent(typeof(T)) as T;
     }
-
-
+    /// <summary>根据json翻译对象</summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="json"></param>
+    /// <returns></returns>
+    public T JsonToObj<T>(string json) where T : Object
+    {
+        if (json != null)
+        {
+            try
+            {
+                T t = JsonMapper.ToObject<T>(json);
+                return t;
+            }
+            catch { }
+        }
+        return null;
+    }
+    /// <summary>根据obj翻译json</summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
+    public string ObjToJson(Object obj)
+    {
+        if (obj==null)
+        {
+            return null;
+        }
+        string str = JsonMapper.ToJson(obj);
+        return str;
+    }
     /// <summary>应用公司的名字</summary>
     public static string GetCompanyName()
     {

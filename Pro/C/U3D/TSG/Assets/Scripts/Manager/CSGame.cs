@@ -143,12 +143,16 @@ public class CSGame : MonoBehaviour
     /// <summary>初始化管理类</summary>
     private void InitMonoManager()
     {
-        UILayerManager.Initialize(transform);
-        CSExceptionManager.Initialize(transform);
-        UIManager.Initialize(transform);
-        CSTimeManager.Initialize(transform);
-        CSToolsManager.Initialize(transform);
-        CSPlayerManager.Initialize(transform);
+        CSExceptionManager.Initialize(transform);//异常
+        CSTimeManager.Initialize(transform);//时间
+        CSToolsManager.Initialize(transform);//工具
+
+        UILayerManager.Initialize(transform);//UI层级
+        UIManager.Initialize(transform);//UI管理
+
+        CSNetManager.Initialize(transform);//网络
+
+        CSPlayerManager.Initialize(transform);//角色
     }
 
 
