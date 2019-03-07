@@ -1,0 +1,6 @@
+E:\SVN\VRShootingGames\trunk\Pro\Server\TSG_Server\TSG_Server\TSG_Server\obj\Debug\TSG_Server.csprojAssemblyReference.cache
+E:\SVN\VRShootingGames\trunk\Pro\Server\TSG_Server\TSG_Server\TSG_Server\obj\Debug\TSG_Server.csproj.CoreCompileInputs.cache
+E:\SVN\VRShootingGames\trunk\Pro\Server\TSG_Server\TSG_Server\TSG_Server\bin\Debug\TSG_Server.exe
+E:\SVN\VRShootingGames\trunk\Pro\Server\TSG_Server\TSG_Server\TSG_Server\bin\Debug\TSG_Server.pdb
+E:\SVN\VRShootingGames\trunk\Pro\Server\TSG_Server\TSG_Server\TSG_Server\obj\Debug\TSG_Server.exe
+E:\SVN\VRShootingGames\trunk\Pro\Server\TSG_Server\TSG_Server\TSG_Server\obj\Debug\TSG_Server.pdb
