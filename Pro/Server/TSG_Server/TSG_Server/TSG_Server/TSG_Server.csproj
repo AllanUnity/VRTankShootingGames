@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Net\ByteBuffer.cs" />
+    <Compile Include="Net\ByteArray.cs" />
+    <Compile Include="Net\SocketMessage.cs" />
+    <Compile Include="Net\SocketClient.cs" />
+    <Compile Include="Net\SocketServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
