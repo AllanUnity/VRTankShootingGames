@@ -79,7 +79,7 @@ public class TKTowerController : MonoBehaviour
     public virtual void ChangeTargetAngles()
     {
         #region X轴
-        targetX_Angles += (Time.deltaTime * xRotateSpeed * rotateHorizontalType);
+        targetX_Angles += Time.deltaTime * xRotateSpeed * rotateHorizontalType;
         if (!isTotalX)
         {
             #region 非全向
@@ -98,10 +98,12 @@ public class TKTowerController : MonoBehaviour
             if (targetX_Angles >= 180)
             {
                 targetX_Angles -= 360;
+                currentX_Angles -= 360;
             }
             if (targetX_Angles <= -180)
             {
                 targetX_Angles += 360;
+                currentX_Angles += 360;
             }
         }
         #endregion
@@ -158,14 +160,6 @@ public class TKTowerController : MonoBehaviour
                 {
                     currentX_Angles = currentX_Angles + (xRotateSpeed * Time.deltaTime);
                 }
-            }
-            if (currentX_Angles >= 180)
-            {
-                currentX_Angles -= 360;
-            }
-            if (currentX_Angles <= -180)
-            {
-                currentX_Angles += 360;
             }
         }
         #endregion
