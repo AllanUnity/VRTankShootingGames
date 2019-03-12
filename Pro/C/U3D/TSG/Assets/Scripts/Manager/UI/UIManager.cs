@@ -198,7 +198,10 @@ public class UIManager : CSMonoSingleton<UIManager>
         ui = GetHidePanel<T>(id);
         if (ui != null)
         {
-            cb?.Invoke(ui);
+            if (cb!=null)
+            {
+                cb(ui);
+            }
 
             RemoveHidePanel(ui, id);
             AddShowPanel(ui, id);
@@ -236,7 +239,10 @@ public class UIManager : CSMonoSingleton<UIManager>
             ui.Init();
             ui.Show();
 
-            cb?.Invoke(ui);
+            if (cb != null)
+            {
+                cb(ui);
+            }
 
             AddShowPanel(ui, id);
         }

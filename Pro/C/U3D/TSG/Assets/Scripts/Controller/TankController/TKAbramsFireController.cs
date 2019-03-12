@@ -13,9 +13,9 @@ public class TKAbramsFireController : MonoBehaviour
     /// <summary>备选炮弹</summary>
     public GameObject[] alternativeBullet;
     /// <summary>下一发炮弹</summary>
-    private GameObject nextBullet;
+    public GameObject nextBullet;
     /// <summary>待发射炮弹</summary>
-    private GameObject bulletPrefab;
+    public GameObject bulletPrefab;
     /// <summary>发射位置</summary>
     public GameObject firePosition;
 

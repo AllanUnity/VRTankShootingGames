@@ -66,4 +66,80 @@ public class Utility
     {
         return SystemInfo.batteryLevel;
     }
+    /// <summary>设备模型</summary>
+    public static string GetDeviceModel()
+    {
+        return SystemInfo.deviceModel;
+    }
+    /// <summary>设备名称</summary>
+    public static string GetDeviceName()
+    {
+
+        return SystemInfo.deviceName;
+    }
+    /// <summary>设备类型（PC电脑，掌上型）</summary>
+    public static string GetDeviceType()
+    {
+        return SystemInfo.deviceType.ToString();
+    }
+    /// <summary>系统内存大小MB</summary>
+    public static int GetMemorySize()
+    {
+        return SystemInfo.systemMemorySize;
+    }
+    /// <summary>操作系统</summary>
+    public static string GetOperatingSystem()
+    {
+        return SystemInfo.operatingSystem;
+    }
+    /// <summary>设备唯一标识符</summary>
+    public static string GetDeviceUniqueIdentifier()
+    {
+        return SystemInfo.deviceUniqueIdentifier;
+    }
+    /// <summary>显卡ID</summary>
+    public static int GetGraphicsDeviceID()
+    {
+        return SystemInfo.graphicsDeviceID;
+    }
+    /// <summary>显卡名称</summary>
+    public static string GetGraphicsDeviceName()
+    {
+        return SystemInfo.graphicsDeviceName;
+    }
+    /// <summary>显卡类型</summary>
+    public static string GetGraphicsDeviceType()
+    {
+        return SystemInfo.graphicsDeviceType.ToString();
+    }
+    /// <summary>显卡供应商</summary>
+    public static string GetGraphicsDeviceVendor()
+    {
+        return SystemInfo.graphicsDeviceVendor;
+    }
+    /// <summary>显卡供应唯一ID</summary>
+    public static int GetGraphicsDeviceVendorID()
+    {
+        return SystemInfo.graphicsDeviceVendorID;
+    }
+    /// <summary>显卡版本号</summary>
+    public static string GetGraphicsDeviceVersion()
+    {
+        return SystemInfo.graphicsDeviceVersion;
+    }
+    /// <summary>显存大小MB</summary>
+    public static int GetGraphicsMemorySize()
+    {
+        return SystemInfo.graphicsMemorySize;
+    }
+    /// <summary>显卡是否支持多线程渲染</summary>
+    public static bool GetGraphicsMultiThreaded()
+    {
+        return SystemInfo.graphicsMultiThreaded;
+    }
+    /// <summary>支持的渲染目标数量</summary>
+    public static int GetsSupportedRenderTargetCount()
+    {
+        return SystemInfo.supportedRenderTargetCount;
+    }
 }

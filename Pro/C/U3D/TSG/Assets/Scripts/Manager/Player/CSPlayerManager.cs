@@ -21,6 +21,7 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>, IOnUpdate
         Player_Abrams.transform.position = Vector3.zero;
         tkController = Player_Abrams.GetComponent<TKController>();
         tkController.Init();
+        CSTimeManager.Singleton.AddUpdate(tkController);
         ChangeReadyNextBullet(BulletType.Default0);
         UIManager.Singleton.OpenPanel<UICombatMainPanel>();
     }
