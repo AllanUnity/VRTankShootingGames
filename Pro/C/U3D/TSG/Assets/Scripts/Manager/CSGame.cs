@@ -91,6 +91,7 @@ public class CSGame : MonoBehaviour
                 return;
             }
             GameObject UI = Instantiate(UIPrefab);
+            UI.name = "UI";
             MainCanvas = UI.transform.Find("MainUI/MainCanvas");
         }
     }
@@ -108,6 +109,7 @@ public class CSGame : MonoBehaviour
                     Debug.LogError("主相机报空,请在GameManager中绑定主相机");
                 }
                 GameObject cameraGame = Instantiate(CameraPrefab);
+                cameraGame.name = "Main Camera";
                 Transform cameraTrans = cameraGame.transform;
                 cameraTrans.position = new Vector3(0, 1, -10);
                 cameraTrans.eulerAngles = Vector3.zero;
@@ -129,6 +131,7 @@ public class CSGame : MonoBehaviour
                 Debug.LogError("主相机报空,请在GameManager中绑定主相机");
             }
             GameObject LightGame = Instantiate(LightPrefab);
+            LightGame.name = "Directional Light";
             Transform LightTrans = LightGame.transform;
             LightTrans.position = new Vector3(0, 1, -10);
             LightTrans.eulerAngles = new Vector3(50, 330, 0);
@@ -149,6 +152,7 @@ public class CSGame : MonoBehaviour
 
         UILayerManager.Initialize(transform);//UI层级
         UIManager.Initialize(transform);//UI管理
+        CSTipsManager.Initialize(transform);//提示层
 
         CSNetManager.Initialize(transform);//网络
 
@@ -163,7 +167,7 @@ public class CSGame : MonoBehaviour
     }
     private void Update()
     {
-        CSTimeManager.Singleton.OnUpdate();
+        CSTimeManager.Singleton.OnUpdate(Time.deltaTime);
     }
   
     private void Quit()

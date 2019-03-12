@@ -30,6 +30,7 @@ public class UIEnroll
     {
         uiEnroll.Add(new Entry(typeof(UITEASER), "UITEASER", 101, "UI/view"));
         uiEnroll.Add(new Entry(typeof(UICombatMainPanel), "UICombatMainPanel", 301, "UI/view"));
+        uiEnroll.Add(new Entry(typeof(UITipsItem), "UITipsItem", 0, "UI/view"));
     }
    
 }

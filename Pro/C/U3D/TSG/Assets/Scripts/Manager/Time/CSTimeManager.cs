@@ -22,7 +22,7 @@ public class CSTimeManager : CSMonoSingleton<CSTimeManager>
         }
         updates.Add(message);
     }
-    public void OnUpdate()
+    public void OnUpdate(float time)
     {
         for (int i = 0; i < updates.Count; i++)
         {
@@ -31,7 +31,7 @@ public class CSTimeManager : CSMonoSingleton<CSTimeManager>
                 updates.RemoveAt(i);
                 continue;
             }
-            updates[i].OnUpdate();
+            updates[i].OnUpdate(time);
         }
     }
     public void OnFixedUpdate()

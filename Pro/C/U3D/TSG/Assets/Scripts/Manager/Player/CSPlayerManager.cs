@@ -7,6 +7,7 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>, IOnUpdate
     public override void Init()
     {
         base.Init();
+        CSTimeManager.Singleton.AddUpdate(this);
         InitPlayer();
     }
 
@@ -18,10 +19,10 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>, IOnUpdate
     private void InitPlayer()
     {
         GameObject Player_Abrams = Instantiate(CSGame.Instance.GetStaticObj("Player_Abrams"));
+        Player_Abrams.name = "Protagonist";
         Player_Abrams.transform.position = Vector3.zero;
         tkController = Player_Abrams.GetComponent<TKController>();
         tkController.Init();
-        CSTimeManager.Singleton.AddUpdate(tkController);
         ChangeReadyNextBullet(BulletType.Default0);
         UIManager.Singleton.OpenPanel<UICombatMainPanel>();
     }
@@ -72,9 +73,9 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>, IOnUpdate
         tkController.fireController.ReadyNextBullet(bt);
     }
 
-    public void OnUpdate()
+    public void OnUpdate(float time)
     {
-
+        tkController.OnUpdate(time);
     }
 
     public void OnFixedUpdate()

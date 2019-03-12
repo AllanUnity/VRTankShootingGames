@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>坦克控制器</summary>
-public class TKController : MonoBehaviour, IOnUpdate
+public class TKController : MonoBehaviour
 {
     public TKAbramsFireController fireController;
     public TKTowerController towerController;
@@ -16,12 +16,9 @@ public class TKController : MonoBehaviour, IOnUpdate
         towerController.Init();
     }
 
-    public void OnFixedUpdate()
-    {
-    }
-
-    public void OnUpdate()
+    public void OnUpdate(float time)
     {
         towerController.OnUpdate();
+        fireController.OnUpdate();
     }
 }

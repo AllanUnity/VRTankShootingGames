@@ -13,9 +13,10 @@ public class TKAbramsFireController : MonoBehaviour
     /// <summary>备选炮弹</summary>
     public GameObject[] alternativeBullet;
     /// <summary>下一发炮弹</summary>
-    public GameObject nextBullet;
+    private GameObject nextBullet;
     /// <summary>待发射炮弹</summary>
-    public GameObject bulletPrefab;
+    private GameObject bulletPrefab;
+
     /// <summary>发射位置</summary>
     public GameObject firePosition;
 
@@ -36,18 +37,20 @@ public class TKAbramsFireController : MonoBehaviour
                 return;
             }
         }
+
+        GameObject _bullet = null;
         switch (bt)
         {
             case BulletType.Default0:
                 {
-                    nextBullet = alternativeBullet[0];
+                    _bullet = alternativeBullet[0];
                 }
                 break;
             case BulletType.Default1:
                 {
                     if (alternativeBullet.Length >= 1)
                     {
-                        nextBullet = alternativeBullet[1];
+                        _bullet = alternativeBullet[1];
                     }
                 }
                 break;
@@ -55,16 +58,41 @@ public class TKAbramsFireController : MonoBehaviour
                 {
                     if (alternativeBullet.Length >= 2)
                     {
-                        nextBullet = alternativeBullet[2];
+                        _bullet = alternativeBullet[2];
                     }
                 }
                 break;
             default:
                 {
-                    nextBullet = alternativeBullet[0];
+                    _bullet = alternativeBullet[0];
                 }
                 break;
         }
+        if (nextBullet != _bullet)//换了下一发炮弹了
+        {
+            nextBullet = _bullet;
+        }
+        else
+        {
+            if (bulletPrefab != nextBullet)
+            {
+                Reloading();
+            }
+            else
+            {
+                CSTipsManager.Singleton.AddTips((ui) =>
+                {
+                    ui.Show("选择的炮弹就是当前的炮弹, 无需选择");
+                });
+                Debug.Log("选择的炮弹就是当前的炮弹, 无需选择");
+            }
+        }
+    }
+    /// <summary>重新装填</summary>
+    public void Reloading()
+    {
+        bulletPrefab = nextBullet;
+        TimeRemaining = cdTime;
     }
     /// <summary>开火</summary>
     public void Fire()
@@ -72,20 +100,35 @@ public class TKAbramsFireController : MonoBehaviour
         if (TimeRemaining > 0)
         {
             Debug.Log("炮弹未装填完毕!!!");
+            CSTipsManager.Singleton.AddTips((ui) =>
+            {
+                ui.Show("炮弹未装填完毕!!!");
+            });
             return;
+        }
+        if (bulletPrefab == null)
+        {
+            bulletPrefab = nextBullet;
         }
         GameObject _bullet = Instantiate(bulletPrefab, firePosition.transform.position, firePosition.transform.rotation);
         _bullet.GetComponent<TKBullet>().FireInit(this);
+
+        Reloading();
     }
+
     /// <summary>装填时间</summary>
     private float cdTime = 2;
     /// <summary>剩余装填时间</summary>
     private float TimeRemaining = 0;
+
+    public void OnUpdate()
+    {
+        StartLoadingShells();
+    }
     /// <summary>倒计时</summary>
     private void StartLoadingShells()
     {
-
+        TimeRemaining -= Time.deltaTime;
     }
-
 }
 

@@ -33,6 +33,7 @@ public class UIBase : MonoBehaviour
     /// <summary>展示</summary>
     public virtual void Show()
     {
+        gameObject.SetActive(true);
         mClientEvent.SendEvent(CEvent.ShowPanel, this);
     }
     public virtual void OnUpdate()
@@ -42,6 +43,7 @@ public class UIBase : MonoBehaviour
     /// <summary>隐藏</summary>
     public virtual void Hide()
     {
+        gameObject.SetActive(false);
         mClientEvent.SendEvent(CEvent.HidePanel, this);
     }
     /// <summary>关闭</summary>

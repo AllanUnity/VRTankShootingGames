@@ -216,7 +216,7 @@ public class UIManager : CSMonoSingleton<UIManager>
         Entry entry = UIEnroll.Instance.FindEntry(type.Name);
         if (entry == null || entry.path == null || string.IsNullOrEmpty(entry.path))
         {
-            UnityEngine.Debug.LogError("界面注册错误 : " + type.Name);
+            UnityEngine.Debug.LogError("界面注册错误 : " + type.Name+ "请在UIEnroll.Init()中注册界面");
             yield break;
         }
         GameObject prefab = CSGame.Instance.GetStaticObj(entry.type.Name);

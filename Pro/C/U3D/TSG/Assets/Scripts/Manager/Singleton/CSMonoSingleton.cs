@@ -9,6 +9,10 @@ public class CSMonoSingleton<T> : MonoBehaviour where T : CSMonoSingleton<T>
     {
         get
         {
+            if (instance==null)
+            {
+                Debug.Log(typeof(T).Name + "未进行初始化,请在CSGame.InitMonoManager()中初始化");
+            }
             return instance;
         }
     }

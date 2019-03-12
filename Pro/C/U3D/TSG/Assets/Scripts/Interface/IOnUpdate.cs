@@ -2,5 +2,5 @@
 {
  
     void OnFixedUpdate();
-    void OnUpdate();
+    void OnUpdate(float time);
 }
