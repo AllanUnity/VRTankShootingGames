@@ -12,6 +12,8 @@ public class UIManager : CSMonoSingleton<UIManager>
     /// <summary>隐藏的面板</summary>
     public Dictionary<Type, Dictionary<int, UIBase>> HidePanelDictionary;
 
+
+
     private void AddShowPanel(UIBase ui, int id)
     {
         if (ShowPanelDictionary != null)
@@ -112,12 +114,11 @@ public class UIManager : CSMonoSingleton<UIManager>
         HidePanelDictionary = new Dictionary<Type, Dictionary<int, UIBase>>();
     }
 
-
     /// <summary>获取已打开的面板</summary>
     /// <typeparam name="T">面板类型</typeparam>
     /// <param name="uiid">id</param>
     /// <returns></returns>
-    public T GetPanel<T>(int uiid = 0) where T : UIBase
+    public T GetOpenPanel<T>(int uiid = 0) where T : UIBase
     {
         Type type = typeof(T);
         if (ShowPanelDictionary != null)
@@ -175,7 +176,7 @@ public class UIManager : CSMonoSingleton<UIManager>
     /// <returns></returns>
     public bool IsOpenPanel<T>(int id = 0) where T : UIBase
     {
-        T t = GetPanel<T>(id);
+        T t = GetOpenPanel<T>(id);
         if (t != null)
         {
             return true;
@@ -190,7 +191,7 @@ public class UIManager : CSMonoSingleton<UIManager>
     /// <param name="cb"></param>
     public void OpenPanel<T>(int id = 0, DelegateOpenPanelCallBack cb = null) where T : UIBase
     {
-        UIBase ui = GetPanel<T>(id);
+        UIBase ui = GetOpenPanel<T>(id);
         if (ui != null)
         {
             return;
@@ -198,7 +199,7 @@ public class UIManager : CSMonoSingleton<UIManager>
         ui = GetHidePanel<T>(id);
         if (ui != null)
         {
-            if (cb!=null)
+            if (cb != null)
             {
                 cb(ui);
             }
@@ -216,7 +217,7 @@ public class UIManager : CSMonoSingleton<UIManager>
         Entry entry = UIEnroll.Instance.FindEntry(type.Name);
         if (entry == null || entry.path == null || string.IsNullOrEmpty(entry.path))
         {
-            UnityEngine.Debug.LogError("界面注册错误 : " + type.Name+ "请在UIEnroll.Init()中注册界面");
+            UnityEngine.Debug.LogError("界面注册错误 : " + type.Name + "请在UIEnroll.Init()中注册界面");
             yield break;
         }
         GameObject prefab = CSGame.Instance.GetStaticObj(entry.type.Name);
@@ -239,19 +240,70 @@ public class UIManager : CSMonoSingleton<UIManager>
             ui.Init();
             ui.Show();
 
-            if (cb != null)
-            {
-                cb(ui);
-            }
+            cb?.Invoke(ui);
 
             AddShowPanel(ui, id);
         }
     }
-    private void InstantiateUI(GameObject prefab)
+
+    /// <summary>隐藏面板</summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="uiid"></param>
+    public void HidePanel<T>(int uiid = 0, DelegateHidePanelCallBack cb = null) where T : UIBase
     {
 
+    }
+    /// <summary>
+    /// 关闭面板
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="uiid"></param>
+    /// <param name="cb"></param>
+    public void ClosePanel<T>(int uiid = 0, DelegateClosePanelCallBack cb = null) where T : UIBase
+    {
+        T t = GetOpenPanel<T>(uiid);
+        if (t==null)
+        {
+            t = GetHidePanel<T>(uiid);
+        }
+        if (t!=null)
+        {
+            t.Close();
+            RemoveHidePanel(t, uiid);
+            RemoveShowPanel(t, uiid);
+            Destroy(t.gameObject);
+            Resources.UnloadUnusedAssets();
+        }
+    }
+    /// <summary>关闭所有面板</summary>
+    public void CloseAll()
+    {
+        foreach (var uis in ShowPanelDictionary)
+        {
+            foreach (var ui in uis.Value)
+            {
+                ui.Value.Close();
+                Destroy(ui.Value.gameObject);
+            }
+        }
+        Resources.UnloadUnusedAssets();
+        foreach (var uis in HidePanelDictionary)
+        {
+            foreach (var ui in uis.Value)
+            {
+                ui.Value.Close();
+                Destroy(ui.Value.gameObject);
+            }
+        }
+        Resources.UnloadUnusedAssets();
     }
 }
 /// <summary>打开面板回调</summary>
 /// <param name="ui"></param>
 public delegate void DelegateOpenPanelCallBack(UIBase ui);
+/// <summary>隐藏面板回调</summary>
+/// <param name="ui"></param>
+public delegate void DelegateHidePanelCallBack(UIBase ui);
+/// <summary>关闭面板回调</summary>
+/// <param name="ui"></param>
+public delegate void DelegateClosePanelCallBack(UIBase ui);

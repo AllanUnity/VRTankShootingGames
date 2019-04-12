@@ -159,14 +159,15 @@ public class CSGame : MonoBehaviour
         InputManager.Initialize(transform);//输入
         CSTimeManager.Initialize(transform);//时间
         CSToolsManager.Initialize(transform);//工具
-        CSQRCoderManager.Initialize(transform);
+        CSQRCoderManager.Initialize(transform);//二维码
+        CSResourceManager.Initialize(transform);//资源
 
         UILayerManager.Initialize(transform);//UI层级
         UIManager.Initialize(transform);//UI管理
         CSTipsManager.Initialize(transform);//提示层
 
         CSNetManager.Initialize(transform);//网络
-        
+
     }
     #endregion
 
@@ -174,7 +175,12 @@ public class CSGame : MonoBehaviour
     {
         InputManager.Add(KeyCode.Escape, () =>
         {
-            UIManager.Singleton.OpenPanel<UIESCPanel>();
+            if (!UIManager.Singleton.IsOpenPanel<UIESCPanel>())
+                UIManager.Singleton.OpenPanel<UIESCPanel>();
+            else
+            {
+                UIManager.Singleton.ClosePanel<UIESCPanel>();
+            }
         });
     }
 
@@ -187,8 +193,13 @@ public class CSGame : MonoBehaviour
         CSTimeManager.Singleton.OnUpdate(Time.deltaTime);
     }
 
-    private void Quit()
+    public void Quit()
     {
+        UIManager.Singleton.CloseAll();
+#if UNITY_EDITOR
+        Debug.Log("结束游戏");
+#else
         Application.Quit();
+#endif
     }
 }

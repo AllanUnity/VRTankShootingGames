@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>提示</summary>
 public class UITipsItem : UIBase
 {
     public override UILayerType PanelLayerType { get { return UILayerType.Tips; } }
