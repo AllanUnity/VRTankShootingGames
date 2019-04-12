@@ -1,0 +1,15 @@
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\Debug.dll
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\Debug.pdb
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.ClothModule.dll
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.CoreModule.dll
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.PhysicsModule.dll
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.SharedInternalsModule.dll
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.ClothModule.xml
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.CoreModule.xml
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.PhysicsModule.xml
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\bin\Release\UnityEngine.SharedInternalsModule.xml
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\obj\Release\Debug.csprojAssemblyReference.cache
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\obj\Release\Debug.csproj.CoreCompileInputs.cache
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\obj\Release\Debug.csproj.CopyComplete
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\obj\Release\Debug.dll
+E:\SVN\VRShootingGames\trunk\Pro\VS\TSG_Assist\Debug\obj\Release\Debug.pdb
