@@ -3,9 +3,7 @@
  创建时间: 2019.1.28
  作用:事件管理,1,通用型的在EventSystemManger中操作,2,针对性的在特殊类中创建EventHanlderManager对象并发送
  */
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public delegate void DelegateHanlderCallBack(uint eventId, params object[] objs);
 

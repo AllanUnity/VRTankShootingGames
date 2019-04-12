@@ -8,7 +8,7 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>, IOnUpdate
     {
         base.Init();
         CSTimeManager.Singleton.AddUpdate(this);
-        InitPlayer();
+        //InitPlayer();
     }
 
     private TKController tkController;
@@ -36,46 +36,58 @@ public class CSPlayerManager : CSMonoSingleton<CSPlayerManager>, IOnUpdate
     /// <summary>旋转</summary>
     public void RotateTower(Vector2 vec)
     {
-        switch (controllerType)
+        if (tkController!=null)
         {
-            case TKControllerType.None:
-                break;
-            case TKControllerType.Joystick:
-                tkController.towerController.RotateTower(vec.x, vec.y);
-                break;
-            case TKControllerType.Keyboard:
-                break;
-            case TKControllerType.Phone:
-                break;
+            switch (controllerType)
+            {
+                case TKControllerType.None:
+                    break;
+                case TKControllerType.Joystick:
+                    tkController.towerController.RotateTower(vec.x, vec.y);
+                    break;
+                case TKControllerType.Keyboard:
+                    break;
+                case TKControllerType.Phone:
+                    break;
+            }
         }
     }
 
     /// <summary>开火</summary>
     public void Fire()
     {
-        switch (controllerType)
+        if (tkController != null)
         {
-            case TKControllerType.None:
-                break;
-            case TKControllerType.Joystick:
-                tkController.fireController.Fire();
-                break;
-            case TKControllerType.Keyboard:
-                break;
-            case TKControllerType.Phone:
-                break;
+            switch (controllerType)
+            {
+                case TKControllerType.None:
+                    break;
+                case TKControllerType.Joystick:
+                    tkController.fireController.Fire();
+                    break;
+                case TKControllerType.Keyboard:
+                    break;
+                case TKControllerType.Phone:
+                    break;
+            }
         }
     }
     /// <summary>更改下一发炮弹的种类</summary>
     /// <param name="bt"></param>
     public void ChangeReadyNextBullet(BulletType bt)
     {
-        tkController.fireController.ReadyNextBullet(bt);
+        if (tkController != null)
+        {
+            tkController.fireController.ReadyNextBullet(bt);
+        }
     }
 
     public void OnUpdate(float time)
     {
-        tkController.OnUpdate(time);
+        if (tkController != null)
+        {
+            tkController.OnUpdate(time);
+        }
     }
 
     public void OnFixedUpdate()

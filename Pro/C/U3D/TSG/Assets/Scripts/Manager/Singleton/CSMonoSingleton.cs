@@ -9,7 +9,7 @@ public class CSMonoSingleton<T> : MonoBehaviour where T : CSMonoSingleton<T>
     {
         get
         {
-            if (instance==null)
+            if (instance == null)
             {
                 Debug.Log(typeof(T).Name + "未进行初始化,请在CSGame.InitMonoManager()中初始化");
             }
@@ -20,6 +20,7 @@ public class CSMonoSingleton<T> : MonoBehaviour where T : CSMonoSingleton<T>
     /// <param name="parent"></param>
     public static void Initialize(Transform parent)
     {
+        Debug.LogColor("初始化管理类 : " + typeof(T));
         if (instance != default(T))
         {
             return;

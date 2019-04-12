@@ -8,17 +8,17 @@ public class CSGame : MonoBehaviour
 
     /// <summary>屏幕尺寸</summary>
     [SerializeField]
-    private Vector2 sceneSize=new Vector2(1920,1080);
+    private Vector2 sceneSize = new Vector2(1920, 1080);
     /// <summary>屏幕尺寸</summary>
     public Vector2 SceneSize { get { return sceneSize; } }
 
+    #region 资源
     /// <summary>主UI</summary>
     public Transform MainCanvas;
     /// <summary>主相机</summary>
     public Camera MainCamera;
     /// <summary>主灯光</summary>
     public Light DirectionalLight;
-
     /// <summary>常驻资源管理类</summary>
     [System.Serializable]
     public struct ResidentAssets
@@ -45,7 +45,7 @@ public class CSGame : MonoBehaviour
         }
         return null;
     }
-
+    #endregion
     /// <summary>事件</summary>
     public EventHanlderManager EventHanlder = new EventHanlderManager();
 
@@ -55,15 +55,20 @@ public class CSGame : MonoBehaviour
     }
     private void Initialize()
     {
+        Debug.LogColor("开始初始化");
         GameObject.DontDestroyOnLoad(this);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Debug.LogColor("设置不休眠");
         instance = this;
+        Debug.LogColor("设置Game单例");
         Screen.SetResolution((int)SceneSize.x, (int)SceneSize.y, false);
+        Debug.LogColor("设置分辨率");
 
         Application.targetFrameRate = 45;
-
+        Debug.LogColor("设置帧率为" + Application.targetFrameRate);
         InitAssets();
         InitMonoManager();
+        FinishInit();
     }
     #region 初始化资源
     /// <summary>初始化资源管理</summary>
@@ -75,10 +80,11 @@ public class CSGame : MonoBehaviour
     }
     private void InitMainCanvas()
     {
+        Debug.LogColor("创建主UI");
         if (MainCanvas == null)
         {
             GameObject canvasGames = GameObject.Find("UI");
-            if (canvasGames!=null)
+            if (canvasGames != null)
             {
                 MainCanvas = canvasGames.transform.Find("MainUI/MainCanvas");
                 return;
@@ -98,6 +104,7 @@ public class CSGame : MonoBehaviour
     /// <summary>初始化主相机</summary>
     private void InitMainCamera()
     {
+        Debug.LogColor("创建主相机");
         if (MainCamera == null)
         {
             MainCamera = Camera.main;
@@ -122,6 +129,7 @@ public class CSGame : MonoBehaviour
     /// <summary>初始化灯光</summary>
     private void InitLight()
     {
+        Debug.LogColor("创建主灯光");
         if (DirectionalLight == null)
         {
 
@@ -143,33 +151,42 @@ public class CSGame : MonoBehaviour
     }
     #endregion
 
+    #region 初始化管理类
     /// <summary>初始化管理类</summary>
     private void InitMonoManager()
     {
-        CSExceptionManager.Initialize(transform);//异常
+        Debug.LogColor("初始化管理类");
+        InputManager.Initialize(transform);//输入
         CSTimeManager.Initialize(transform);//时间
         CSToolsManager.Initialize(transform);//工具
+        CSQRCoderManager.Initialize(transform);
 
         UILayerManager.Initialize(transform);//UI层级
         UIManager.Initialize(transform);//UI管理
         CSTipsManager.Initialize(transform);//提示层
 
         CSNetManager.Initialize(transform);//网络
-
-        CSPlayerManager.Initialize(transform);//角色
+        
     }
+    #endregion
 
-
+    private void FinishInit()
+    {
+        InputManager.Add(KeyCode.Escape, () =>
+        {
+            UIManager.Singleton.OpenPanel<UIESCPanel>();
+        });
+    }
 
     private void FixedUpdate()
     {
-      CSTimeManager.Singleton. OnFixedUpdate();
+        CSTimeManager.Singleton.OnFixedUpdate();
     }
     private void Update()
     {
         CSTimeManager.Singleton.OnUpdate(Time.deltaTime);
     }
-  
+
     private void Quit()
     {
         Application.Quit();

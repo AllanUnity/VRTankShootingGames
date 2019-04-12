@@ -36,7 +36,8 @@ public class CSTimeManager : CSMonoSingleton<CSTimeManager>
     }
     public void OnFixedUpdate()
     {
-        GetCurrentTimeEvent(DateTime.Now);
+        GetCurrentTimeEvent?.Invoke(DateTime.Now);
+
         for (int i = 0; i < updates.Count; i++)
         {
             if (updates[i] == null)
