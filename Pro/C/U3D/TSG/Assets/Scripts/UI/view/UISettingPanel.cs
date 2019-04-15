@@ -1,18 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class UISettingPanel : MonoBehaviour
+using UnityEngine.UI;
+/// <summary>
+/// 设置面板
+/// </summary>
+public class UISettingPanel : UIBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public Button CloseBtn;
+    public override void Init()
     {
-        
+        base.Init();
+        AddButtonClickEvent(CloseBtn, ClosePanel);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ClosePanel()
     {
-        
+        UIManager.Singleton.ClosePanel<UISettingPanel>();
+    }
+
+    public override void Show()
+    {
+        base.Show();
     }
 }

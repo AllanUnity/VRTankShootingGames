@@ -161,6 +161,7 @@ public class CSGame : MonoBehaviour
         CSToolsManager.Initialize(transform);//工具
         CSQRCoderManager.Initialize(transform);//二维码
         CSResourceManager.Initialize(transform);//资源
+        CSScenesManager.Initialize(transform);//场景管理器
 
         UILayerManager.Initialize(transform);//UI层级
         UIManager.Initialize(transform);//UI管理
@@ -182,6 +183,7 @@ public class CSGame : MonoBehaviour
                 UIManager.Singleton.ClosePanel<UIESCPanel>();
             }
         });
+        CSScenesManager.Singleton.LoadScene(ESceneType.Main);
     }
 
     private void FixedUpdate()

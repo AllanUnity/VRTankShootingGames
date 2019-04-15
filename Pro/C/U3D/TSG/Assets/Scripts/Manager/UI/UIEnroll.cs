@@ -31,6 +31,8 @@ public class UIEnroll
         uiEnroll.Add(new Entry(typeof(UITEASER), "UITEASER", 0, "UI/view"));//健康游戏忠告
         uiEnroll.Add(new Entry(typeof(UITipsItem), "UITipsItem", 1001, "UI/view"));//提示
         uiEnroll.Add(new Entry(typeof(UIESCPanel), "UIESCPanel", 1002, "UI/view"));//Esc退出界面
+        uiEnroll.Add(new Entry(typeof(UISettingPanel), "UISettingPanel", 1003, "UI/view"));//设置面板
+        uiEnroll.Add(new Entry(typeof(UIMainPanel), "UIMainPanel", 101, "UI/view"));//主面板
         uiEnroll.Add(new Entry(typeof(UICombatMainPanel), "UICombatMainPanel", 401, "UI/view"));//战斗主面板
     }
    

@@ -16,7 +16,8 @@ public class UIESCPanel : UIBase
     /// <summary>打开设置界面</summary>
     private void OpenSettingPanel()
     {
-        
+        //UIManager.Singleton.ClosePanel<UIESCPanel>();
+        UIManager.Singleton.OpenPanel<UISettingPanel>(); 
     }
     /// <summary>退出游戏</summary>
     private void CloseGameOnClick()
